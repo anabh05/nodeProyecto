@@ -12,11 +12,17 @@ const aldeaSchema = new mongoose.Schema({
     required: true,
   },
 
-  pais : {
+  country : {
     type: String,
     required: true,
   },
-  image: {
+ 
+  kage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Ninja",
+  },
+
+   image: {
     type: String,
     
   },

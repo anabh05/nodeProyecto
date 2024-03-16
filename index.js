@@ -3,6 +3,9 @@
 
 const express = require("express");
 const cors = require("cors");
+//
+const bodyParser = require('body-parser');
+
 // 1.2 documentos del proyecto
 const { connectMongo } = require("./src/data/mongo");
 //const { configCloudinary } = require("./src/utils/cloudinary/config");
@@ -20,6 +23,10 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // usar urlencode para las urls.
+//
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//
 connectMongo();
 //configCloudinary();
 // 2.2 cabeceras (https://developer.mozilla.org/en-US/docs/Web/API/Headers)

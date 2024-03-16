@@ -6,9 +6,9 @@ const { HTTPSTATUSCODE } = require("../../utils/httpStatusCode");
 const createAldea = async (req, res, next) => {
   
   try {
-    const { name, habitants, pais } = req.body
+    const { name, habitants, country, kage,} = req.body
     const image = req.file?req.file.path:""// una ternaria para saber si nos han enviado el archivo
-    const aldea = await Aldea.create({name, habitants, pais, image});
+    const aldea = await Aldea.create({name, habitants, country, kage, image});
 
     res.status(201).json({
       status: 201,
@@ -22,7 +22,8 @@ const createAldea = async (req, res, next) => {
 
 const getAllAldeas = async (req, res, next) => {
   try {
-    const aldeas = await Aldea.find();
+    const aldeas = await Aldea.find().populate("kage")
+    // const aldeas = await Aldea.find();
     res.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
